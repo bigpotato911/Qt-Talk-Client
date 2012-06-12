@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include <QLineEdit>
 #include <QTcpSocket>
+#include <QDebug>
 #include "logindialog.h"
 #include "ui_logindialog.h"
 
@@ -13,7 +14,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
 
     ui->setupUi(this);
     ui->pwdEdit->setEchoMode(QLineEdit::Password);
-    blockSize = 0;
+
 
     connect(ui->loginButton,SIGNAL(clicked()),this,SLOT(login()));
     connect(this,SIGNAL(verified()),this,SLOT(processVerified()));
@@ -40,6 +41,7 @@ void LoginDialog::connectToServer()
     client = new QTcpSocket(this);
     client->abort();
     client->connectToHost("127.0.0.1",9999);
+    blockSize = 0;
     connect(client,SIGNAL(connected()),this,SLOT(verify()));
     connect(client,SIGNAL(readyRead()),this,SLOT(readMessage()));
 
@@ -48,23 +50,22 @@ void LoginDialog::connectToServer()
 //Analysis the info read from the server and make decision
 void LoginDialog::readMessage()
 {
-
+    qDebug("message arrive...");
     QString result;
     QDataStream in(client);
     in.setVersion(QDataStream::Qt_4_7);
     if(blockSize == 0) {
         if(client->bytesAvailable() < (int)sizeof(quint16))
             return;
-        else
-            in >> blockSize;
+        in >> blockSize;
 
     }
     if(client->bytesAvailable() < blockSize)
         return;
     in >> result;
-    if(result == "true")
+    if(result == "True")
         emit verified();
-    else if(result == "false")
+    else if(result == "False")
         emit unverified();
 
 }
@@ -86,15 +87,16 @@ void LoginDialog::processUnverified()
  //Write to the server to verify the user infomation
 void LoginDialog::verify()
 {
+    qDebug("Connected to server...");
     ui->loginButton->setDisabled(true);
 
     QByteArray block;
     QDataStream out(&block,QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_7);
-    out << quint16(0) << "Verify" << userName << password;
+    out << quint16(0) << QString("Verify") << userName.trimmed() << password.trimmed();
     out.device()->seek(0);
     out << quint16(block.size() - sizeof(quint16));
-
+    qDebug() << block.size();
     client->write(block);
 
 }

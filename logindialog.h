@@ -29,7 +29,7 @@ private slots:
 private:
 
 
-    int blockSize;
+    quint16 blockSize;
     QString userName;
     QString password;
     Ui::LoginDialog *ui;
