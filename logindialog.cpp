@@ -82,6 +82,7 @@ void LoginDialog::processUnverified()
     ui->userNameEdit->clear();
     ui->pwdEdit->clear();
     ui->userNameEdit->setFocus();
+    ui->loginButton->setEnabled(true);
 }
 
  //Write to the server to verify the user infomation
