@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>283</width>
-    <height>396</height>
+    <width>287</width>
+    <height>367</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Google Talk</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>21</y>
+     <y>10</y>
      <width>225</width>
-     <height>316</height>
+     <height>340</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -102,35 +102,35 @@
      </widget>
     </item>
     <item>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0" colspan="4">
-       <widget class="QLabel" name="userNameLabel">
-        <property name="text">
-         <string>User Name:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="4">
-       <widget class="QLineEdit" name="userNameEdit"/>
-      </item>
-      <item row="2" column="0" colspan="4">
-       <widget class="QLabel" name="pwdLabel">
-        <property name="text">
-         <string>Password:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="4">
-       <widget class="QLineEdit" name="pwdEdit"/>
-      </item>
-      <item row="4" column="0" colspan="3">
-       <widget class="QCheckBox" name="rememberPwdcheckBox">
-        <property name="text">
-         <string>Remember Password</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
+     <widget class="QLabel" name="userNameLabel">
+      <property name="text">
+       <string>User Name:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="userNameEdit"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="pwdLabel">
+      <property name="text">
+       <string>Password:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="pwdEdit"/>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="rememberPwdcheckBox">
+      <property name="text">
+       <string>Remember Password</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -143,14 +143,14 @@
         </property>
        </spacer>
       </item>
-      <item row="5" column="1">
+      <item>
        <widget class="QPushButton" name="loginButton">
         <property name="text">
          <string>Login</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="2" colspan="2">
+      <item>
        <spacer name="horizontalSpacer_4">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -163,7 +163,11 @@
         </property>
        </spacer>
       </item>
-      <item row="6" column="0">
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -176,7 +180,7 @@
         </property>
        </spacer>
       </item>
-      <item row="6" column="1">
+      <item>
        <widget class="QLabel" name="forgerPwdLabel">
         <property name="text">
          <string>Forger password?</string>
@@ -186,7 +190,7 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="3">
+      <item>
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -202,17 +206,28 @@
      </layout>
     </item>
     <item>
-     <spacer name="verticalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="ipLabel">
+        <property name="text">
+         <string>ip:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="ipEdit"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="portLabel">
+        <property name="text">
+         <string>port:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="portEdit"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

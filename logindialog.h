@@ -15,6 +15,9 @@ class LoginDialog : public QDialog
 
 public:
     explicit LoginDialog(QWidget *parent = 0);
+    QString userName();
+    QString ip();
+    QString port();
     ~LoginDialog();
 signals:
     void verified();
@@ -30,8 +33,10 @@ private:
 
 
     quint16 blockSize;
-    QString userName;
-    QString password;
+    QString m_userName;
+    QString m_password;
+    QString serverIp;
+    QString serverPort;
     Ui::LoginDialog *ui;
     QTcpSocket *client;
 };

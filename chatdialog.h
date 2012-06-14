@@ -7,19 +7,28 @@ namespace Ui {
 class ChatDialog;
 }
 
-class QTcpSocket;
+class QUdpSocket;
 
 class ChatDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ChatDialog(QWidget *parent = 0);
+    explicit ChatDialog(const QString &userName,const QString &ip,const QString &port,QWidget *parent = 0);
+    void setUserName(const QString &userName);
     ~ChatDialog();
-
+private slots:
+    void processReadyRead();
 private:
+    void login();
+    void processShowOnlineUsers(QDataStream &in);
+    void processDatagram(QByteArray block);
     Ui::ChatDialog *ui;
-    QTcpSocket *client;
+    QString m_userName;
+    QString serverIp;
+    QString serverPort;
+    QUdpSocket *udpSocket;
+    quint16 udpPort;
 };
 
 #endif // CHATDIALOG_H

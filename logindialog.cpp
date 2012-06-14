@@ -15,11 +15,27 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui->setupUi(this);
     ui->pwdEdit->setEchoMode(QLineEdit::Password);
 
-
+    serverIp = QString("127.0.0.1");
+    serverPort = QString("9998");
     connect(ui->loginButton,SIGNAL(clicked()),this,SLOT(login()));
     connect(this,SIGNAL(verified()),this,SLOT(processVerified()));
     connect(this,SIGNAL(unverified()),this,SLOT(processUnverified()));
 
+}
+
+QString LoginDialog::userName()
+{
+    return m_userName;
+}
+
+QString LoginDialog::ip()
+{
+    return serverIp;
+}
+
+QString LoginDialog::port()
+{
+    return serverPort;
 }
 
 LoginDialog::~LoginDialog()
@@ -29,8 +45,13 @@ LoginDialog::~LoginDialog()
 
 void LoginDialog::login()
 {
-    userName = ui->userNameEdit->text();
-    password = ui->pwdEdit->text();
+
+    m_userName = ui->userNameEdit->text();
+    m_password = ui->pwdEdit->text();
+    if(!ui->ipEdit->text().isEmpty())
+        serverIp = ui->ipEdit->text();
+    if(!ui->portEdit->text().isEmpty())
+        serverPort = ui->portEdit->text();
     connectToServer();
 
 }
@@ -40,7 +61,7 @@ void LoginDialog::connectToServer()
 {
     client = new QTcpSocket(this);
     client->abort();
-    client->connectToHost("127.0.0.1",9999);
+    client->connectToHost(serverIp,serverPort.toUInt());
     blockSize = 0;
     connect(client,SIGNAL(connected()),this,SLOT(verify()));
     connect(client,SIGNAL(readyRead()),this,SLOT(readMessage()));
@@ -94,7 +115,7 @@ void LoginDialog::verify()
     QByteArray block;
     QDataStream out(&block,QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_7);
-    out << quint16(0) << QString("Verify") << userName.trimmed() << password.trimmed();
+    out << quint16(0) << QString("Verify") << m_userName.trimmed() << m_password.trimmed();
     out.device()->seek(0);
     out << quint16(block.size() - sizeof(quint16));
     qDebug() << block.size();

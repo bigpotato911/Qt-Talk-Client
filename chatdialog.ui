@@ -6,25 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
-    <height>464</height>
+    <width>641</width>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Google Chatroom</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>611</width>
-     <height>444</height>
+     <width>621</width>
+     <height>479</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="7,3">
+   <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="7,3">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="7,1,2">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="6,1,2,1">
       <item>
        <widget class="QTextEdit" name="messageEdit"/>
       </item>
@@ -155,7 +155,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="clearButton">
+         <widget class="QPushButton" name="clearMsgButton">
           <property name="text">
            <string/>
           </property>
@@ -240,6 +240,37 @@
       <item>
        <widget class="QTextEdit" name="inputEdit"/>
       </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="6,2,2">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="sendButton">
+          <property name="text">
+           <string>Send</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="clearInputButton">
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
      </layout>
     </item>
     <item>
@@ -251,5 +282,54 @@
  <resources>
   <include location="client.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>clearInputButton</sender>
+   <signal>clicked()</signal>
+   <receiver>inputEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>391</x>
+     <y>466</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>337</x>
+     <y>410</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearMsgButton</sender>
+   <signal>clicked()</signal>
+   <receiver>messageEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>219</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hideButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>userList</receiver>
+   <slot>setHidden(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>411</x>
+     <y>320</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>494</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
