@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Google Chatroom</string>
+   <string/>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -26,7 +26,11 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout" stretch="6,1,2,1">
       <item>
-       <widget class="QTextEdit" name="messageEdit"/>
+       <widget class="QTextEdit" name="messageEdit">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">

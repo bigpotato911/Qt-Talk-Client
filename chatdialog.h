@@ -19,10 +19,19 @@ public:
     ~ChatDialog();
 private slots:
     void processReadyRead();
+    void broadcastMessage();
 private:
     void login();
-    void processShowOnlineUsers(QDataStream &in);
+
+
     void processDatagram(QByteArray block);
+    void processShowOnlineUsers(QDataStream &in);
+    void processNewUserLogin(QDataStream &in);
+    void processNewBroadcastMessage(QDataStream &in);
+    void processUserOffline(QDataStream &in);
+
+    QString getCurrentDate();
+
     Ui::ChatDialog *ui;
     QString m_userName;
     QString serverIp;
